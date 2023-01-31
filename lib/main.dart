@@ -13,7 +13,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp.router(
       routerDelegate:
-          RoutemasterDelegate(routesBuilder: (context) => loggedOutRoute),
+          RoutemasterDelegate(routesBuilder: (context) => loggedInRoute),
       routeInformationParser: const RoutemasterParser(),
     );
   }
