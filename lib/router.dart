@@ -8,5 +8,5 @@ final loggedOutRoute = RouteMap(routes: {
 });
 
 final loggedInRoute = RouteMap(routes: {
-  '/': (_) => const MaterialPage(child: HomeScreen()),
+  '/': (_) => const MaterialPage(child: SafeArea(child: HomeScreen())),
 });

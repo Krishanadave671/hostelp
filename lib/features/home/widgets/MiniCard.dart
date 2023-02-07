@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CustomCard extends StatefulWidget {
+class MiniCard extends StatefulWidget {
   Image img;
   String name;
-  CustomCard({super.key, required this.img, required this.name});
+  MiniCard({super.key, required this.img, required this.name});
 
   @override
-  State<CustomCard> createState() => _CustomCardState();
+  State<MiniCard> createState() => _MiniCardState();
 }
 
-class _CustomCardState extends State<CustomCard> {
+class _MiniCardState extends State<MiniCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
