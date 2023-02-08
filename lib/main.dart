@@ -13,8 +13,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      theme: ThemeData(useMaterial3: true , colorScheme: lightColorScheme),
-      darkTheme: ThemeData(useMaterial3: true , colorScheme: darkColorScheme),
+      theme: theme,
+      darkTheme: darktheme,
+      themeMode: ThemeMode.dark,
       routerDelegate:
           RoutemasterDelegate(routesBuilder: (context) => loggedOutRoute),
       routeInformationParser: const RoutemasterParser(),
