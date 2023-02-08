@@ -6,17 +6,40 @@ class HostelList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: Column(
-        children: [
-          Spacer(),
+        body: CustomScrollView(
+      slivers: [
+        SliverAppBar(
+          leading: Icon(
+            Icons.arrow_back_ios,
+          ),
+          elevation: 5,
+          title: Text(
+            'Hostels in Location',
+          ),
+          floating: true,
+          snap: true,
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Icon(
+                Icons.edit,
+              ),
+            ),
+          ],
+        ),
+        SliverList(
+            delegate: SliverChildListDelegate([
           ElevatedCardExample(),
-          FilledCardExample(),
-          OutlinedCardExample(),
-          Spacer(),
-        ],
-      ),
-    );
+          ElevatedCardExample(),
+          ElevatedCardExample(),
+          ElevatedCardExample(),
+          ElevatedCardExample(),
+          ElevatedCardExample(),
+          ElevatedCardExample(),
+          ElevatedCardExample(),
+        ]))
+      ],
+    ));
   }
 }
 
@@ -29,169 +52,122 @@ class ElevatedCardExample extends StatelessWidget {
     final width = MediaQuery.of(context).size.width;
     return Center(
         child: Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(4.0),
       child: InkWell(
         onTap: () {},
         child: Card(
-            margin: const EdgeInsets.all(4.0),
             elevation: 0,
-            child: Container(
-              height: height,
-              width: width,
+            child: SizedBox(
               child: Row(
                 children: [
-                  Container(
-                    width: width * 0.3,
-                    height: height,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      image: DecorationImage(
-                        fit: BoxFit.fill,
-                        image: NetworkImage(
-                            'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9zdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      height: height,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: const DecorationImage(
+                          fit: BoxFit.fill,
+                          image: NetworkImage(
+                              'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9zdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
+                        ),
                       ),
                     ),
                   ),
                   SizedBox(
-                    width: 10,
+                    width: MediaQuery.of(context).size.width * 0.03,
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "A.G Hostel",
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                            ),
-                          ),
-                          SizedBox(
-                            width: 40,
-                          ),
-                          Text(
-                            "Ratings : 4.1",
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                          Icon(
-                            Icons.star_rate,
-                            color: Colors.orangeAccent,
-                            size: 16,
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.currency_rupee,
-                            color: Colors.red,
-                          ),
-                          Text(
-                            "30000",
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text("  per month"),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Row(
+                  Expanded(
+                    flex: 4,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Icon(
-                            Icons.location_on,
-                            color: Colors.blue,
-                          ),
-                          Text(
-                            "2 km from location",
-                            style: TextStyle(
-                              color: Colors.blue,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("A.G Hostel",
+                                  style:
+                                      Theme.of(context).textTheme.titleMedium),
+                              SizedBox(
+                                width:
+                                    MediaQuery.of(context).size.height * 0.02,
+                              ),
+                              Row(
+                                children: [
+                                  Text(
+                                    "Ratings : 4.1",
+                                    style:
+                                        Theme.of(context).textTheme.labelSmall,
+                                  ),
+                                  Icon(
+                                    Icons.star_rate,
+                                    color: Colors.orangeAccent,
+                                    size: 16,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                           SizedBox(
-                            width: 5,
+                            height: 10,
                           ),
-                          Text(
-                            "|",
+                          Row(
+                            children: [
+                              Icon(
+                                Icons.currency_rupee,
+                                color: Theme.of(context).colorScheme.primary,
+                              ),
+                              Text("30000",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge!
+                                      .copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary)),
+                              Text("  per month"),
+                            ],
                           ),
                           SizedBox(
-                            width: 10,
+                            height: MediaQuery.of(context).size.height * 0.02,
                           ),
-                          Text(
-                            "Available",
-                            style: TextStyle(
-                              color: Colors.green,
-                            ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.location_on,
+                                    color: Colors.blue,
+                                  ),
+                                  Text(
+                                    "2 km from location",
+                                    style: TextStyle(
+                                      color: Colors.blue,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "Available",
+                                style: TextStyle(
+                                  color: Colors.green,
+                                  fontSize: 12,
+                                ),
+                              )
+                            ],
                           )
                         ],
-                      )
-                    ],
+                      ),
+                    ),
                   ),
                 ],
               ),
             )),
       ),
     ));
-  }
-}
-
-class FilledCardExample extends StatelessWidget {
-  const FilledCardExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        elevation: 0,
-        color: Theme.of(context).colorScheme.surfaceVariant,
-        child: const SizedBox(
-          width: 300,
-          height: 100,
-          child: Center(child: Text('Filled Card')),
-        ),
-      ),
-    );
-  }
-}
-
-class OutlinedCardExample extends StatelessWidget {
-  const OutlinedCardExample({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-        ),
-        child: const SizedBox(
-          width: 300,
-          height: 100,
-          child: Center(
-            child: Text('Outlined Card'),
-          ),
-        ),
-      ),
-    );
   }
 }
