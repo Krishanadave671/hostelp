@@ -18,18 +18,28 @@ class _FilterCheckBoxWidgetState extends State<FilterCheckBoxWidget> {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: const Color(0xff645CBB),
+          // color: const Color(0xff232f21),
           borderRadius: BorderRadius.circular(24)),
       child: CheckboxListTile(
-        // checkColor: Color(0xff645CBB),
-        activeColor: Color(0xff645CBB),
+        selected: widget.value,
+        selectedTileColor: const Color(0xff5581fb),
+        tileColor: const Color(0xff232f21),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        checkboxShape: const OvalBorder(),
+        activeColor: const Color(0xff5581fb),
+        checkColor: const Color(0xfff5f5f5),
         controlAffinity: ListTileControlAffinity.leading,
         contentPadding: const EdgeInsets.all(0),
         title: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(
+            right: 8.0,
+            top: 8.0,
+            bottom: 8.0,
+          ),
           child: Text(
             widget.title,
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+            style: const TextStyle(
+                color: Colors.white, fontWeight: FontWeight.bold),
           ),
         ),
         value: widget.value,

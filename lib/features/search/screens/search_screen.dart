@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hostelp/features/search/utils.dart';
+import 'package:hostelp/features/search/widgets/button.dart';
 import 'package:hostelp/features/search/widgets/filter_checkbox_widget.dart';
 import 'package:hostelp/features/search/widgets/search_filter_button.dart';
 
@@ -10,26 +12,20 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  List<bool> selectedOptionList = [false, false, false]; // Hostel PG and Tiffin
-  List<bool> selectedRoomList = [
-    false,
-    false,
-    false,
-    false
-  ]; // Single, double, triple four room
-  List<bool> selectedWorkPreferenceList = [false, false];
-  int? selectedGender;
-  int? mess;
-  int currentSelectedPrice = 1000;
-
   void selectService(int index) {
-    for (int i = 0; i < selectedOptionList.length; i++) {
+    for (int i = 0; i < Utils.selectedOptionList.length; i++) {
       if (index == i) {
-        selectedOptionList[i] = true;
+        Utils.selectedOptionList[i] = true;
       } else {
-        selectedOptionList[i] = false;
+        Utils.selectedOptionList[i] = false;
       }
     }
+  }
+
+  void selectGenderMethod(int? value) {
+    setState(() {
+      Utils.selectedGender = value;
+    });
   }
 
   @override
@@ -69,7 +65,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             selectService(0);
                           });
                         },
-                        isSelected: selectedOptionList[0],
+                        isSelected: Utils.selectedOptionList[0],
                       ),
                       SearchFilterButton(
                         title: 'PG',
@@ -78,7 +74,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             selectService(1);
                           });
                         },
-                        isSelected: selectedOptionList[1],
+                        isSelected: Utils.selectedOptionList[1],
                       ),
                       SearchFilterButton(
                         title: 'Tiffin',
@@ -88,7 +84,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             selectService(2);
                           });
                         },
-                        isSelected: selectedOptionList[2],
+                        isSelected: Utils.selectedOptionList[2],
                       ),
                     ],
                   ),
@@ -113,215 +109,318 @@ class _SearchScreenState extends State<SearchScreen> {
                             onPressed: () {},
                             icon: const Icon(Icons.search_rounded))),
                   ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'For',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: RadioListTile(
-                          activeColor: const Color(0xff645CBB),
-                          contentPadding: const EdgeInsets.all(0),
-                          value: 1,
-                          title: const Text('Male'),
-                          groupValue: selectedGender,
-                          onChanged: ((value) {
-                            setState(() {
-                              selectedGender = value;
-                            });
-                          }),
-                        ),
-                      ),
-                      Expanded(
-                        child: RadioListTile(
-                          activeColor: const Color(0xff645CBB),
-                          contentPadding: const EdgeInsets.all(0),
-                          value: 2,
-                          title: const Text('Female'),
-                          groupValue: selectedGender,
-                          onChanged: ((value) {
-                            setState(() {
-                              selectedGender = value;
-                            });
-                          }),
-                        ),
-                      ),
-                      Expanded(
-                        child: RadioListTile(
-                          activeColor: const Color(0xff645CBB),
-                          contentPadding: const EdgeInsets.all(0),
-                          value: 3,
-                          title: const Text('Others'),
-                          groupValue: selectedGender,
-                          onChanged: ((value) {
-                            setState(() {
-                              selectedGender = value;
-                            });
-                          }),
-                        ),
-                      ),
-                    ],
-                  ),
-                  const Text(
-                    'Room Type',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FilterCheckBoxWidget(
-                          title: 'Single room',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedRoomList[0] = !selectedRoomList[0];
-                            });
-                          },
-                          value: selectedRoomList[0],
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: FilterCheckBoxWidget(
-                          title: 'Double room',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedRoomList[1] = !selectedRoomList[1];
-                            });
-                          },
-                          value: selectedRoomList[1],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
+                  SizedBox(
                     height: 10,
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: FilterCheckBoxWidget(
-                          title: 'Triple room',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedRoomList[2] = !selectedRoomList[2];
-                            });
-                          },
-                          value: selectedRoomList[2],
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: FilterCheckBoxWidget(
-                          title: 'Four room',
-                          onChanged: (bool? value) {
-                            setState(() {
-                              selectedRoomList[3] = !selectedRoomList[3];
-                            });
-                          },
-                          value: selectedRoomList[3],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Text(
-                    'Price range: Rs. $currentSelectedPrice',
-                    style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  Slider(
-                    activeColor: const Color(0xff645CBB),
-                    label: 'Select price',
-                    value: currentSelectedPrice.toDouble(),
-                    onChanged: (value) {
-                      setState(() {
-                        currentSelectedPrice = value.toInt();
-                      });
-                    },
-                    min: 1000,
-                    divisions: 10,
-                    max: 20000,
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Preferred for',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                          child: FilterCheckBoxWidget(
-                        title: 'Student',
-                        onChanged: (bool? value) {
-                          setState(() {
-                            selectedWorkPreferenceList[0] =
-                                !selectedWorkPreferenceList[0];
-                          });
-                        },
-                        value: selectedWorkPreferenceList[0],
-                      )),
-                      const SizedBox(width: 10),
-                      Expanded(
-                          child: FilterCheckBoxWidget(
-                        title: 'Professional',
-                        onChanged: (bool? value) {
-                          setState(() {
-                            selectedWorkPreferenceList[1] =
-                                !selectedWorkPreferenceList[1];
-                          });
-                        },
-                        value: selectedWorkPreferenceList[1],
-                      )),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  const Text(
-                    'Mess',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: RadioListTile(
-                          activeColor: const Color(0xff645CBB),
-                          contentPadding: const EdgeInsets.all(0),
-                          value: 1,
-                          title: const Text('Yes'),
-                          groupValue: mess,
-                          onChanged: ((value) {
-                            setState(() {
-                              mess = value;
-                            });
-                          }),
-                        ),
-                      ),
-                      Expanded(
-                        child: RadioListTile(
-                          activeColor: const Color(0xff645CBB),
-                          contentPadding: const EdgeInsets.all(0),
-                          value: 2,
-                          title: const Text('No'),
-                          groupValue: mess,
-                          onChanged: ((value) {
-                            setState(() {
-                              mess = value;
-                            });
-                          }),
-                        ),
-                      ),
-                    ],
-                  ),
+                  Center(
+                      child: Button(
+                          title: 'Filter',
+                          onTap: () {
+                            Utils.buttonAnimationBoolean = true;
+                            showModalBottomSheet(
+                                context: context,
+                                shape: const RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.vertical(
+                                        top: Radius.circular(24))),
+                                builder: (BuildContext context) {
+                                  return SizedBox(
+                                    height: MediaQuery.of(context).size.height,
+                                    child: StatefulBuilder(builder:
+                                        (BuildContext context,
+                                            StateSetter setState) {
+                                      return Scaffold(
+                                        body: SingleChildScrollView(
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              children: [
+                                                const Text(
+                                                  'For',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: RadioListTile(
+                                                        activeColor:
+                                                            const Color(
+                                                                0xff645CBB),
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .all(0),
+                                                        value: 1,
+                                                        title:
+                                                            const Text('Male'),
+                                                        groupValue: Utils
+                                                            .selectedGender,
+                                                        onChanged: ((value) {
+                                                          setState(() {
+                                                            Utils.selectedGender =
+                                                                value;
+                                                          });
+                                                        }),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: RadioListTile(
+                                                        activeColor:
+                                                            const Color(
+                                                                0xff645CBB),
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .all(0),
+                                                        value: 2,
+                                                        title: const Text(
+                                                            'Female'),
+                                                        groupValue: Utils
+                                                            .selectedGender,
+                                                        onChanged: ((value) {
+                                                          setState(() {
+                                                            Utils.selectedGender =
+                                                                value;
+                                                          });
+                                                        }),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: RadioListTile(
+                                                        activeColor:
+                                                            const Color(
+                                                                0xff645CBB),
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .all(0),
+                                                        value: 3,
+                                                        title: const Text(
+                                                            'Others'),
+                                                        groupValue: Utils
+                                                            .selectedGender,
+                                                        onChanged: ((value) {
+                                                          setState(() {
+                                                            Utils.selectedGender =
+                                                                value;
+                                                          });
+                                                        }),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                                const Text(
+                                                  'Room Type',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(height: 10),
+                                                Container(
+                                                  height: 40,
+                                                  child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    shrinkWrap: true,
+                                                    itemCount: Utils
+                                                        .selectedRoomList
+                                                        .length,
+                                                    itemBuilder:
+                                                        (BuildContext context,
+                                                            int index) {
+                                                      return Row(
+                                                        children: [
+                                                          InkWell(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        24),
+                                                            onTap: () {
+                                                              setState(
+                                                                () {
+                                                                  filterSelectionManager(
+                                                                      index);
+                                                                },
+                                                              );
+                                                            },
+                                                            child: Container(
+                                                              height: 40,
+                                                              decoration:
+                                                                  BoxDecoration(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            24),
+                                                                color: Utils.selectedRoomList[
+                                                                            index]
+                                                                        [
+                                                                        'isFilterSelected']
+                                                                    ? Color(
+                                                                        0xff5581fb)
+                                                                    : const Color(
+                                                                        0xff232f21),
+                                                              ),
+                                                              child: Padding(
+                                                                padding:
+                                                                    const EdgeInsets
+                                                                            .all(
+                                                                        8.0),
+                                                                child: Text(
+                                                                  Utils.selectedRoomList[
+                                                                          index]
+                                                                      [
+                                                                      'roomType'],
+                                                                  style: TextStyle(
+                                                                      color: Utils.selectedRoomList[index]
+                                                                              [
+                                                                              'isFilterSelected']
+                                                                          ? Colors
+                                                                              .black
+                                                                          : Colors
+                                                                              .white),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ),
+                                                          SizedBox(
+                                                            width: 10,
+                                                          ),
+                                                        ],
+                                                      );
+                                                    },
+                                                  ),
+                                                ),
+                                                const SizedBox(
+                                                  height: 10,
+                                                ),
+                                                Text(
+                                                  'Price range: Rs. ${Utils.currentSelectedPrice}',
+                                                  style: const TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                Slider(
+                                                  activeColor:
+                                                      const Color(0xff645CBB),
+                                                  label: 'Select price',
+                                                  value: Utils
+                                                      .currentSelectedPrice
+                                                      .toDouble(),
+                                                  onChanged: (value) {
+                                                    setState(() {
+                                                      Utils.currentSelectedPrice =
+                                                          value.toInt();
+                                                    });
+                                                  },
+                                                  min: 1000,
+                                                  divisions: 10,
+                                                  max: 20000,
+                                                ),
+                                                const SizedBox(height: 10),
+                                                const Text(
+                                                  'Preferred for',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(height: 10),
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                        child:
+                                                            FilterCheckBoxWidget(
+                                                      title: 'Student',
+                                                      onChanged: (bool? value) {
+                                                        setState(() {
+                                                          Utils.selectedWorkPreferenceList[
+                                                              0] = !Utils
+                                                                  .selectedWorkPreferenceList[
+                                                              0];
+                                                        });
+                                                      },
+                                                      value: Utils
+                                                          .selectedWorkPreferenceList[0],
+                                                    )),
+                                                    const SizedBox(width: 10),
+                                                    Expanded(
+                                                        child:
+                                                            FilterCheckBoxWidget(
+                                                      title: 'Professional',
+                                                      onChanged: (bool? value) {
+                                                        setState(() {
+                                                          Utils.selectedWorkPreferenceList[
+                                                              1] = !Utils
+                                                                  .selectedWorkPreferenceList[
+                                                              1];
+                                                        });
+                                                      },
+                                                      value: Utils
+                                                          .selectedWorkPreferenceList[1],
+                                                    )),
+                                                  ],
+                                                ),
+                                                const SizedBox(height: 10),
+                                                const Text(
+                                                  'Mess',
+                                                  style: TextStyle(
+                                                      fontSize: 18,
+                                                      fontWeight:
+                                                          FontWeight.bold),
+                                                ),
+                                                const SizedBox(height: 10),
+                                                Row(
+                                                  children: [
+                                                    Expanded(
+                                                      child: RadioListTile(
+                                                        activeColor:
+                                                            const Color(
+                                                                0xff645CBB),
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .all(0),
+                                                        value: 1,
+                                                        title:
+                                                            const Text('Yes'),
+                                                        groupValue: Utils.mess,
+                                                        onChanged: ((value) {
+                                                          setState(() {
+                                                            Utils.mess = value;
+                                                          });
+                                                        }),
+                                                      ),
+                                                    ),
+                                                    Expanded(
+                                                      child: RadioListTile(
+                                                        activeColor:
+                                                            const Color(
+                                                                0xff645CBB),
+                                                        contentPadding:
+                                                            const EdgeInsets
+                                                                .all(0),
+                                                        value: 2,
+                                                        title: const Text('No'),
+                                                        groupValue: Utils.mess,
+                                                        onChanged: ((value) {
+                                                          setState(() {
+                                                            Utils.mess = value;
+                                                          });
+                                                        }),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    }),
+                                  );
+                                });
+                            Utils.buttonAnimationBoolean = false;
+                          }))
                 ],
               ),
             ),
@@ -329,5 +428,16 @@ class _SearchScreenState extends State<SearchScreen> {
         ),
       ),
     );
+  }
+
+  void filterSelectionManager(int index) {
+    for (int i = 0; i < Utils.selectedRoomList.length; i++) {
+      if (i == index) {
+        Utils.selectedRoomList[i]['isFilterSelected'] =
+            !Utils.selectedRoomList[i]['isFilterSelected'];
+      } else {
+        Utils.selectedRoomList[i]['isFilterSelected'] = false;
+      }
+    }
   }
 }

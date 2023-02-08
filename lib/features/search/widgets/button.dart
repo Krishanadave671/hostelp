@@ -1,55 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:hostelp/features/search/utils.dart';
 
-class SearchFilterButton extends StatefulWidget {
-  const SearchFilterButton({
+class Button extends StatefulWidget {
+  const Button({
     super.key,
     required this.title,
     this.leftCircularBorder = false,
     this.rightCircularBorder = false,
     required this.onTap,
-    this.isSelected = false,
   });
   final String title;
   final bool leftCircularBorder;
   final bool rightCircularBorder;
   final VoidCallback onTap;
-  final bool isSelected;
   @override
-  State<SearchFilterButton> createState() => _SearchFilterButtonState();
+  State<Button> createState() => _ButtonState();
 }
 
-class _SearchFilterButtonState extends State<SearchFilterButton> {
+class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
       decoration: BoxDecoration(
         boxShadow: [
-          widget.isSelected
+          Utils.buttonAnimationBoolean
               ? const BoxShadow(blurRadius: 20.0, color: Color(0xff5581fb))
               : const BoxShadow(blurRadius: 0.0, color: Color(0xff5581fb)),
         ],
-        color: widget.isSelected
+        color: Utils.buttonAnimationBoolean
             ? const Color(0xff5581fb)
             : const Color(0xff232f21),
-        borderRadius: BorderRadius.horizontal(
-          left: widget.leftCircularBorder
-              ? const Radius.circular(24)
-              : const Radius.circular(0),
-          right: widget.rightCircularBorder
-              ? const Radius.circular(24)
-              : const Radius.circular(0),
-        ),
+        borderRadius: BorderRadius.circular(24),
       ),
       child: InkWell(
-        borderRadius: BorderRadius.horizontal(
-          left: widget.leftCircularBorder
-              ? const Radius.circular(24)
-              : const Radius.circular(0),
-          right: widget.rightCircularBorder
-              ? const Radius.circular(24)
-              : const Radius.circular(0),
-        ),
+        borderRadius: BorderRadius.circular(24),
         onTap: widget.onTap,
         child: SizedBox(
           width: MediaQuery.of(context).size.width * 0.3,
