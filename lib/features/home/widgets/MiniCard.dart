@@ -13,6 +13,7 @@ class _MiniCardState extends State<MiniCard> {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 20,
       child: Container(
         padding: const EdgeInsets.all(8.0),
         width: 85,
