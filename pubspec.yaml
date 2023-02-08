@@ -1,20 +1,22 @@
 name: hostelp
 description: A new Flutter project.
-publish_to: 'none'
+publish_to: "none"
 version: 0.1.0
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
+  cached_network_image: ^3.2.3
   flutter:
     sdk: flutter
+  flutter_riverpod: ^2.1.3
   routemaster: ^1.0.1
 
 dev_dependencies:
+  flutter_lints: ^2.0.0
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
