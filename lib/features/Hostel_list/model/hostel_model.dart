@@ -10,7 +10,6 @@ class HostelModel {
   final String imageUrl;
   final bool availability;
 
-
   HostelModel({
     required this.hostelName,
     required this.amount,
@@ -19,11 +18,4 @@ class HostelModel {
     required this.imageUrl,
     required this.availability,
   });
-
-
-
-
-
-
-  
 }

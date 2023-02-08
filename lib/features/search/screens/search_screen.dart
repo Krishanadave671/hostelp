@@ -109,7 +109,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             onPressed: () {},
                             icon: const Icon(Icons.search_rounded))),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Center(
@@ -216,7 +216,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                           FontWeight.bold),
                                                 ),
                                                 const SizedBox(height: 10),
-                                                Container(
+                                                SizedBox(
                                                   height: 40,
                                                   child: ListView.builder(
                                                     scrollDirection:
@@ -255,8 +255,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                                                             index]
                                                                         [
                                                                         'isFilterSelected']
-                                                                    ? Color(
-                                                                        0xff5581fb)
+                                                                    ? Theme.of(
+                                                                            context)
+                                                                        .colorScheme
+                                                                        .inversePrimary
                                                                     : const Color(
                                                                         0xff232f21),
                                                               ),
@@ -282,7 +284,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                                               ),
                                                             ),
                                                           ),
-                                                          SizedBox(
+                                                          const SizedBox(
                                                             width: 10,
                                                           ),
                                                         ],
