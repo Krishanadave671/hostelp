@@ -56,20 +56,26 @@ class ElevatedCardExample extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         child: Card(
-            elevation: 0,
+            elevation: 5,
             child: SizedBox(
               child: Row(
                 children: [
                   Expanded(
                     flex: 2,
-                    child: Container(
-                      height: height,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        image: const DecorationImage(
-                          fit: BoxFit.fill,
-                          image: NetworkImage(
-                              'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9zdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AspectRatio(
+                        aspectRatio: 16 / 10,
+                        child: Container(
+                          height: height,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: NetworkImage(
+                                  'https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8aG9zdGVsfGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
+                            ),
+                          ),
                         ),
                       ),
                     ),
