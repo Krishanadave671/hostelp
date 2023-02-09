@@ -10,6 +10,9 @@ import 'package:hostelp/features/home/widgets/MiniCard.dart';
 import 'package:hostelp/features/home/widgets/SmallGap.dart';
 import 'package:hostelp/features/home/widgets/CurvedShape.dart';
 import 'package:hostelp/utils/colors.dart';
+import 'package:routemaster/routemaster.dart';
+
+//name photo description book_button calender menu
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -36,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
             ),
             onPressed: () {
-              // do something
+              Routemaster.of(context).push('/search');
             },
           ),
           IconButton(
@@ -65,42 +68,6 @@ class _HomeScreenState extends State<HomeScreen> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  // Text(
-                  //   "What are you looking for?",
-                  //   style: TextStyle(
-                  //     color: Colors.black,
-                  //     fontSize: 22,
-                  //     fontFamily: 'EuclidCircular',
-                  //     fontWeight: FontWeight.w500,
-                  //   ),
-                  // ),
-                  // TextField(
-                  //   style: TextStyle(
-                  //     color: Colors.black,
-                  //     fontSize: 20,
-                  //     fontFamily: 'EuclidCircular',
-                  //     fontWeight: FontWeight.w400,
-                  //   ),
-                  //   decoration: InputDecoration(
-                  //     hintText: 'Enter location',
-                  //     filled: true,
-                  //     enabledBorder: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.circular(24),
-                  //       borderSide: BorderSide(color: themePurple),
-                  //     ),
-                  //     focusedBorder: OutlineInputBorder(
-                  //       borderRadius: BorderRadius.circular(24),
-                  //       borderSide: const BorderSide(
-                  //         color: Color(0xff645CBB),
-                  //         width: 2.5,
-                  //       ),
-                  //     ),
-                  //     suffixIcon: IconButton(
-                  //       onPressed: () {},
-                  //       icon: const Icon(Icons.search_rounded),
-                  //     ),
-                  //   ),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: SingleChildScrollView(

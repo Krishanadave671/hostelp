@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hostelp/features/auth/screens/login_screen.dart';
 import 'package:hostelp/features/home/screens/home_screen.dart';
+import 'package:hostelp/features/home/screens/search.dart';
 import 'package:routemaster/routemaster.dart';
 
 final loggedOutRoute = RouteMap(routes: {
@@ -9,4 +10,5 @@ final loggedOutRoute = RouteMap(routes: {
 
 final loggedInRoute = RouteMap(routes: {
   '/': (_) => const MaterialPage(child: SafeArea(child: HomeScreen())),
+  '/search': (_) => const MaterialPage(child: SafeArea(child: Search())),
 });
