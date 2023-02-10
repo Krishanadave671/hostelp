@@ -69,23 +69,22 @@ const darkColorScheme = ColorScheme(
 );
 
 final theme = ThemeData(
-    useMaterial3: true ,
+    useMaterial3: true,
     scaffoldBackgroundColor: lightColorScheme.background,
     shadowColor: lightColorScheme.outline,
-    primaryColor:lightColorScheme.primary,
+    primaryColor: lightColorScheme.primary,
     colorScheme: lightColorScheme,
     textTheme: _textTheme,
     fontFamily: 'Poppins');
 
 final darktheme = ThemeData(
-    useMaterial3: true ,
+    useMaterial3: true,
     scaffoldBackgroundColor: darkColorScheme.background,
     shadowColor: darkColorScheme.outline,
-    primaryColor:darkColorScheme.primary,
+    primaryColor: darkColorScheme.primary,
     colorScheme: darkColorScheme,
     textTheme: _textTheme,
     fontFamily: 'Poppins');
-
 
 const _textTheme = TextTheme(
   displayLarge: TextStyle(
@@ -129,7 +128,7 @@ const _textTheme = TextTheme(
     fontWeight: FontWeight.w400,
   ),
   labelMedium: TextStyle(
-    fontSize: 14 , 
+    fontSize: 14,
     fontWeight: FontWeight.w400,
   ),
   labelSmall: TextStyle(
@@ -137,6 +136,4 @@ const _textTheme = TextTheme(
     fontSize: 14,
     fontWeight: FontWeight.w400,
   ),
-  
-   
 );
