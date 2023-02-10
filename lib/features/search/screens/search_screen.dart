@@ -76,7 +76,6 @@ class _SearchScreenState extends State<SearchScreen> {
       setState(() {
         _currentAddress =
             '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
-        print(_currentAddress);
       });
     }).catchError((e) {
       debugPrint(e);
