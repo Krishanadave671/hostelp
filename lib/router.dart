@@ -5,16 +5,14 @@ import 'package:hostelp/features/home/screens/home_screen.dart';
 import 'package:hostelp/features/profilepage/screens/profile_page.dart';
 import 'package:routemaster/routemaster.dart';
 
-
 final loggedOutRoute = RouteMap(routes: {
-  '/': (_) => const  MaterialPage(child: HostelList()),
+  '/': (_) => const MaterialPage(child: HostelList()),
 });
 
 final loggedInRoute = RouteMap(routes: {
   '/': (_) => const MaterialPage(child: HomeScreen()),
 });
 
-
-final HotelRoute = RouteMap(routes: {
-  '/HotelRoute' : (_) => const MaterialPage(child : HostelList()), 
-}); 
+final hostellistRoute = RouteMap(routes: {
+  '/hostellist': (_) => const MaterialPage(child: HostelList()),
+});

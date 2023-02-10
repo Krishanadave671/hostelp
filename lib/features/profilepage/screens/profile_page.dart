@@ -4,7 +4,6 @@
 
 // import 'package:hostelp/mytheme.dart';
 
-
 // class ProfileScreen extends StatefulWidget {
 //   const ProfileScreen({Key? key}) : super(key: key);
 
@@ -82,11 +81,11 @@
 //                       padding: EdgeInsets.only(left: 70.0),
 //                       child: Text("Name"),
 //                     ),
-                
+
 //                       Padding(
 //                           padding: const EdgeInsets.symmetric(horizontal: 20.0),
 //                           child: TextFormField(
-                            
+
 //                             initialValue: "",
 //                             style: const TextStyle(color: Colors.black),
 //                             decoration: InputDecoration(
@@ -122,8 +121,7 @@
 //                             ),
 //                           ),
 //                       ),
-                      
-                  
+
 //                     const SizedBox(
 //                       height: 10,
 //                     ),
@@ -165,8 +163,7 @@
 //                       padding: EdgeInsets.only(left: 70.0),
 //                       child: Text("Mobile"),
 //                     ),
-                  
-                    
+
 //                     const Padding(
 //                       padding: EdgeInsets.only(left: 30),
 //                       child: Text('DOCUMENTATION'),
