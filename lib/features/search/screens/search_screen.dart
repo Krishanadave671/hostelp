@@ -97,7 +97,7 @@ class _SearchScreenState extends State<SearchScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Center(
-                child: Container(
+                child: SizedBox(
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: Column(
                     children: [
@@ -114,10 +114,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primary)),
-                              Icon(Icons.search)
+                              const Icon(Icons.search)
                             ]),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextField(
                         textInputAction: TextInputAction.done,
                         textAlignVertical: TextAlignVertical.center,
@@ -150,13 +150,13 @@ class _SearchScreenState extends State<SearchScreen> {
                                   color: Theme.of(context).colorScheme.primary,
                                 ))),
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       OutlinedButton(
                         onPressed: () async {
                           _currentPosition = await _determinePosition();
-                          print(_currentPosition);
+                          // print(_currentPosition);
                           await _getAddressFromLatLng(_currentPosition);
-                          print(_currentAddress);
+                          // print(_currentAddress);
                         },
                         child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -169,9 +169,10 @@ class _SearchScreenState extends State<SearchScreen> {
                                           color: Theme.of(context)
                                               .colorScheme
                                               .primary)),
-                              Icon(Icons.location_searching_rounded)
+                              const Icon(Icons.location_searching_rounded)
                             ]),
                       ),
+                      Text(_currentAddress ?? ''),
                     ],
                   ),
                 ),

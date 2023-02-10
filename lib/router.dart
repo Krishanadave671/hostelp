@@ -6,11 +6,11 @@ import 'package:hostelp/features/search/screens/search_screen.dart';
 import 'package:routemaster/routemaster.dart';
 
 final loggedOutRoute = RouteMap(routes: {
-  '/': (_) => const MaterialPage(child: SearchScreen()),
+  '/': (_) => const MaterialPage(child: LoginScreen()),
 });
 
 final loggedInRoute = RouteMap(routes: {
-  '/': (_) => const MaterialPage(child: SearchScreen()),
+  '/': (_) => const MaterialPage(child: HomeScreen()),
   '/search': (_) => const MaterialPage(child: SearchScreen()),
 });
 
