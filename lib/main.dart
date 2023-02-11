@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hostelp/mytheme.dart';
 import 'package:hostelp/router.dart';
 import 'package:routemaster/routemaster.dart';
 
@@ -12,11 +13,9 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
-        fontFamily: "EuclidCircular",
-      ),
+      theme: theme,
+      darkTheme: darktheme,
+      themeMode: ThemeMode.dark,
       routerDelegate:
           RoutemasterDelegate(routesBuilder: (context) => loggedInRoute),
       routeInformationParser: const RoutemasterParser(),
