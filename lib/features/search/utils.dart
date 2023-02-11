@@ -58,5 +58,8 @@ class Utils {
       'isSelected': false,
     },
   ];
+  static int? selectedGender;
+  static int? mess;
   static int currentSelectedPrice = 1000;
+  static bool buttonAnimationBoolean = false;
 }
