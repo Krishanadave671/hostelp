@@ -14,6 +14,6 @@ final loggedInRoute = RouteMap(routes: {
   '/search': (_) => const MaterialPage(child: SearchScreen()),
 });
 
-final hotelRoute = RouteMap(routes: {
+final hostelRoute = RouteMap(routes: {
   '/hostel': (_) => const MaterialPage(child: HostelList()),
 });

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hostelp/features/search/utils.dart';
-import 'package:hostelp/features/search/widgets/filter_checkbox_widget.dart';
 
 class HostelList extends StatelessWidget {
   const HostelList({Key? key}) : super(key: key);
@@ -17,8 +16,25 @@ class HostelList extends StatelessWidget {
   }
 
   void genderFilterSelectionManager(int index) {
-    Utils.selectedGenderList[index]['isGenderSelected'] =
-        !Utils.selectedGenderList[index]['isGenderSelected'];
+    for (int i = 0; i < Utils.selectedGenderList.length; i++) {
+      if (i == index) {
+        Utils.selectedGenderList[i]['isGenderSelected'] =
+            !Utils.selectedGenderList[i]['isGenderSelected'];
+      } else {
+        Utils.selectedGenderList[i]['isGenderSelected'] = false;
+      }
+    }
+  }
+
+  void messBooleanManager(int index) {
+    for (int i = 0; i < Utils.messBooleanList.length; i++) {
+      if (i == index) {
+        Utils.messBooleanList[i]['isSelected'] =
+            !Utils.messBooleanList[i]['isSelected'];
+      } else {
+        Utils.messBooleanList[i]['isSelected'] = false;
+      }
+    }
   }
 
   @override
@@ -65,58 +81,6 @@ class HostelList extends StatelessWidget {
                                             ?.copyWith(
                                                 fontWeight: FontWeight.bold),
                                       ),
-                                      // Row(
-                                      //   children: [
-                                      //     Expanded(
-                                      //       child: RadioListTile(
-                                      //         activeColor:
-                                      //             const Color(0xff645CBB),
-                                      //         contentPadding:
-                                      //             const EdgeInsets.all(0),
-                                      //         value: 1,
-                                      //         title: const Text('Male'),
-                                      //         groupValue: Utils.selectedGender,
-                                      //         onChanged: ((value) {
-                                      //           setState(() {
-                                      //             Utils.selectedGender = value;
-                                      //           });
-                                      //         }),
-                                      //       ),
-                                      //     ),
-                                      //     Expanded(
-                                      //       child: RadioListTile(
-                                      //         activeColor:
-                                      //             const Color(0xff645CBB),
-                                      //         contentPadding:
-                                      //             const EdgeInsets.all(0),
-                                      //         value: 2,
-                                      //         title: const Text('Female'),
-                                      //         groupValue: Utils.selectedGender,
-                                      //         onChanged: ((value) {
-                                      //           setState(() {
-                                      //             Utils.selectedGender = value;
-                                      //           });
-                                      //         }),
-                                      //       ),
-                                      //     ),
-                                      //     Expanded(
-                                      //       child: RadioListTile(
-                                      //         activeColor:
-                                      //             const Color(0xff645CBB),
-                                      //         contentPadding:
-                                      //             const EdgeInsets.all(0),
-                                      //         value: 3,
-                                      //         title: const Text('Others'),
-                                      //         groupValue: Utils.selectedGender,
-                                      //         onChanged: ((value) {
-                                      //           setState(() {
-                                      //             Utils.selectedGender = value;
-                                      //           });
-                                      //         }),
-                                      //       ),
-                                      //     ),
-                                      //   ],
-                                      // ),
                                       SizedBox(
                                         height: 40,
                                         child: ListView.builder(
@@ -151,20 +115,26 @@ class HostelList extends StatelessWidget {
                                                           ? Theme.of(context)
                                                               .colorScheme
                                                               .inversePrimary
-                                                          : const Color(
-                                                              0xff232f21),
+                                                          : Theme.of(context)
+                                                              .colorScheme
+                                                              .onInverseSurface,
                                                     ),
                                                     child: Padding(
                                                       padding:
                                                           const EdgeInsets.all(
                                                               8.0),
-                                                      child: Text(
-                                                        Utils.selectedGenderList[
-                                                                index]
-                                                            ['genderType'],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelMedium,
+                                                      child: Align(
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: Text(
+                                                          Utils.selectedGenderList[
+                                                                  index]
+                                                              ['genderType'],
+                                                          style:
+                                                              Theme.of(context)
+                                                                  .textTheme
+                                                                  .labelMedium,
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
@@ -191,61 +161,72 @@ class HostelList extends StatelessWidget {
                                       const SizedBox(height: 10),
                                       SizedBox(
                                         height: 40,
-                                        child: ListView.builder(
-                                          scrollDirection: Axis.horizontal,
-                                          shrinkWrap: true,
-                                          itemCount:
-                                              Utils.selectedRoomList.length,
-                                          itemBuilder: (BuildContext context,
-                                              int index) {
-                                            return Row(
-                                              children: [
-                                                InkWell(
-                                                  borderRadius:
-                                                      BorderRadius.circular(24),
-                                                  onTap: () {
-                                                    setState(
-                                                      () {
-                                                        roomFilterSelectionManager(
-                                                            index);
-                                                      },
-                                                    );
-                                                  },
-                                                  child: Container(
-                                                    height: 40,
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              24),
-                                                      color: Utils.selectedRoomList[
-                                                                  index][
-                                                              'isFilterSelected']
-                                                          ? Theme.of(context)
-                                                              .colorScheme
-                                                              .inversePrimary
-                                                          : const Color(
-                                                              0xff232f21),
-                                                    ),
-                                                    child: Padding(
-                                                      padding:
-                                                          const EdgeInsets.all(
-                                                              8.0),
-                                                      child: Text(
-                                                        Utils.selectedRoomList[
-                                                            index]['roomType'],
-                                                        style: Theme.of(context)
-                                                            .textTheme
-                                                            .labelMedium,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            shrinkWrap: true,
+                                            itemCount:
+                                                Utils.selectedRoomList.length,
+                                            itemBuilder: (BuildContext context,
+                                                int index) {
+                                              return Row(
+                                                children: [
+                                                  InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            24),
+                                                    onTap: () {
+                                                      setState(
+                                                        () {
+                                                          roomFilterSelectionManager(
+                                                              index);
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      height: 40,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                        color: Utils.selectedRoomList[
+                                                                    index][
+                                                                'isFilterSelected']
+                                                            ? Theme.of(context)
+                                                                .colorScheme
+                                                                .inversePrimary
+                                                            : Theme.of(context)
+                                                                .colorScheme
+                                                                .onInverseSurface,
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            Utils.selectedRoomList[
+                                                                    index]
+                                                                ['roomType'],
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .labelMedium,
+                                                          ),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                const SizedBox(
-                                                  width: 10,
-                                                ),
-                                              ],
-                                            );
-                                          },
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          ),
                                         ),
                                       ),
                                       const SizedBox(
@@ -262,7 +243,7 @@ class HostelList extends StatelessWidget {
                                       Slider(
                                         activeColor: Theme.of(context)
                                             .colorScheme
-                                            .onPrimaryContainer,
+                                            .inversePrimary,
                                         label: 'Select price',
                                         value: Utils.currentSelectedPrice
                                             .toDouble(),
@@ -290,39 +271,76 @@ class HostelList extends StatelessWidget {
                                         height: 50,
                                         width:
                                             MediaQuery.of(context).size.width,
-                                        child: ListView(
-                                          scrollDirection: Axis.horizontal,
-                                          children: [
-                                            Expanded(
-                                                child: FilterCheckBoxWidget(
-                                              title: 'Student',
-                                              onChanged: (bool? value) {
-                                                setState(() {
-                                                  Utils.selectedWorkPreferenceList[
-                                                      0] = !Utils
-                                                          .selectedWorkPreferenceList[
-                                                      0];
-                                                });
-                                              },
-                                              value: Utils
-                                                  .selectedWorkPreferenceList[0],
-                                            )),
-                                            const SizedBox(width: 10),
-                                            Expanded(
-                                                child: FilterCheckBoxWidget(
-                                              title: 'Professional',
-                                              onChanged: (bool? value) {
-                                                setState(() {
-                                                  Utils.selectedWorkPreferenceList[
-                                                      1] = !Utils
-                                                          .selectedWorkPreferenceList[
-                                                      1];
-                                                });
-                                              },
-                                              value: Utils
-                                                  .selectedWorkPreferenceList[1],
-                                            )),
-                                          ],
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: ListView.builder(
+                                            itemCount: Utils
+                                                .selectedWorkPreferenceList
+                                                .length,
+                                            scrollDirection: Axis.horizontal,
+                                            shrinkWrap: true,
+                                            itemBuilder: (context, index) {
+                                              return Row(
+                                                children: [
+                                                  InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            24),
+                                                    onTap: () {
+                                                      setState(
+                                                        () {
+                                                          Utils.selectedWorkPreferenceList[
+                                                                      index][
+                                                                  'isSelected'] =
+                                                              !Utils.selectedWorkPreferenceList[
+                                                                      index][
+                                                                  'isSelected'];
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                        color: Utils.selectedWorkPreferenceList[
+                                                                    index]
+                                                                ['isSelected']
+                                                            ? Theme.of(context)
+                                                                .colorScheme
+                                                                .inversePrimary
+                                                            : Theme.of(context)
+                                                                .colorScheme
+                                                                .onInverseSurface,
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(8.0),
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            Utils.selectedWorkPreferenceList[
+                                                                    index][
+                                                                'workPreferenceType'],
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .labelMedium,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                ],
+                                              );
+                                            },
+                                          ),
                                         ),
                                       ),
                                       const SizedBox(height: 10),
@@ -335,51 +353,75 @@ class HostelList extends StatelessWidget {
                                                 fontWeight: FontWeight.bold),
                                       ),
                                       const SizedBox(height: 10),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: RadioListTile(
-                                              activeColor:
-                                                  const Color(0xff645CBB),
-                                              contentPadding:
-                                                  const EdgeInsets.all(0),
-                                              value: 1,
-                                              title: Text(
-                                                'Yes',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .labelMedium,
-                                              ),
-                                              groupValue: Utils.mess,
-                                              onChanged: ((value) {
-                                                setState(() {
-                                                  Utils.mess = value;
-                                                });
-                                              }),
-                                            ),
+                                      SizedBox(
+                                        height: 50,
+                                        width:
+                                            MediaQuery.of(context).size.width,
+                                        child: Align(
+                                          alignment: Alignment.center,
+                                          child: ListView.builder(
+                                            itemCount:
+                                                Utils.messBooleanList.length,
+                                            scrollDirection: Axis.horizontal,
+                                            shrinkWrap: true,
+                                            itemBuilder: (context, index) {
+                                              return Row(
+                                                children: [
+                                                  InkWell(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            24),
+                                                    onTap: () {
+                                                      setState(
+                                                        () {
+                                                          messBooleanManager(
+                                                              index);
+                                                        },
+                                                      );
+                                                    },
+                                                    child: Container(
+                                                      height: 50,
+                                                      decoration: BoxDecoration(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(24),
+                                                        color: Utils.messBooleanList[
+                                                                    index]
+                                                                ['isSelected']
+                                                            ? Theme.of(context)
+                                                                .colorScheme
+                                                                .inversePrimary
+                                                            : Theme.of(context)
+                                                                .colorScheme
+                                                                .onInverseSurface,
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                .all(16.0),
+                                                        child: Align(
+                                                          alignment:
+                                                              Alignment.center,
+                                                          child: Text(
+                                                            Utils.messBooleanList[
+                                                                index]['label'],
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .labelMedium,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  const SizedBox(
+                                                    width: 10,
+                                                  ),
+                                                ],
+                                              );
+                                            },
                                           ),
-                                          Expanded(
-                                            child: RadioListTile(
-                                              activeColor:
-                                                  const Color(0xff645CBB),
-                                              contentPadding:
-                                                  const EdgeInsets.all(0),
-                                              value: 2,
-                                              title: Text(
-                                                'No',
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .labelMedium,
-                                              ),
-                                              groupValue: Utils.mess,
-                                              onChanged: ((value) {
-                                                setState(() {
-                                                  Utils.mess = value;
-                                                });
-                                              }),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ],
                                   ),

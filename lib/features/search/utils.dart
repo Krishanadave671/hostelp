@@ -37,9 +37,26 @@ class Utils {
       'isGenderSelected': false,
     },
   ];
-  static List<bool> selectedWorkPreferenceList = [false, false];
-  static int? selectedGender;
-  static int? mess;
+  static List<Map<String, dynamic>> selectedWorkPreferenceList = [
+    {
+      'workPreferenceType': 'Student',
+      'isSelected': false,
+    },
+    {
+      'workPreferenceType': 'professional',
+      'isSelected': false,
+    },
+  ];
+
+  static List<Map<String, dynamic>> messBooleanList = [
+    {
+      'label': 'Yes',
+      'isSelected': false,
+    },
+    {
+      'label': 'No',
+      'isSelected': false,
+    },
+  ];
   static int currentSelectedPrice = 1000;
-  static bool buttonAnimationBoolean = false;
 }
