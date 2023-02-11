@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:google_fonts/google_fonts.dart';
-import 'package:readmore/readmore.dart';
-
 class RulesTile extends StatelessWidget {
   final String rule;
   final int ruleNo;
