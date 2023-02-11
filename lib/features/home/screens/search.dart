@@ -27,14 +27,14 @@ class _SearchState extends State<Search> {
               child: TextField(
                 autofocus: true,
                 textAlignVertical: TextAlignVertical.bottom,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
                   fontFamily: 'EuclidCircular',
                   fontWeight: FontWeight.w400,
                 ),
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.all(25),
+                  contentPadding: const EdgeInsets.all(25),
                   hintText: 'Search here',
                   filled: true,
                   enabledBorder: OutlineInputBorder(
