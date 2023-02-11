@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MiniCard extends StatefulWidget {
-  Image img;
-  String name;
-  MiniCard({super.key, required this.img, required this.name});
+  final Image img;
+  final String name;
+  const MiniCard({super.key, required this.img, required this.name});
 
   @override
   State<MiniCard> createState() => _MiniCardState();
@@ -22,7 +22,7 @@ class _MiniCardState extends State<MiniCard> {
             widget.img,
             Text(
               widget.name,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 16,
                 fontFamily: 'EuclidCircular',

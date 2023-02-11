@@ -1,14 +1,11 @@
-import 'dart:math';
-import 'dart:ui';
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:hostelp/features/home/widgets/AdCard.dart';
-import 'package:hostelp/features/home/widgets/BigCard.dart';
-import 'package:hostelp/features/home/widgets/BigGap.dart';
-import 'package:hostelp/features/home/widgets/MiniCard.dart';
-import 'package:hostelp/features/home/widgets/SmallGap.dart';
-import 'package:hostelp/features/home/widgets/CurvedShape.dart';
+import 'package:hostelp/features/home/widgets/ad_card.dart';
+import 'package:hostelp/features/home/widgets/big_card.dart';
+import 'package:hostelp/features/home/widgets/big_gap.dart';
+import 'package:hostelp/features/home/widgets/mini_card.dart';
+import 'package:hostelp/features/home/widgets/small_gap.dart';
+import 'package:hostelp/features/home/widgets/curved_shape.dart';
 import 'package:hostelp/utils/colors.dart';
 import 'package:routemaster/routemaster.dart';
 
@@ -34,7 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
         primary: false,
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Colors.white,
             ),
@@ -43,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications_none,
               color: Colors.white,
             ),
@@ -51,11 +48,11 @@ class _HomeScreenState extends State<HomeScreen> {
               // do something
             },
           ),
-          CircleAvatar(
+          const CircleAvatar(
             backgroundImage: null,
             backgroundColor: Colors.grey,
           ),
-          SizedBox(
+          const SizedBox(
             width: 10,
           )
         ],
@@ -64,7 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: SingleChildScrollView(
           child: Stack(
             children: [
-              CurvedShape(),
+              const CurvedShape(),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
@@ -111,9 +108,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                   ),
-                  BigGap(),
+                  const BigGap(),
                   CarouselSlider(
-                    items: [
+                    items: const [
                       AdCard(
                         link:
                             "https://images.squarespace-cdn.com/content/v1/5ee642363713db37c1aa1c70/1601228943611-BHI8PAV7OM7FT5269O2M/image-asset.jpeg?format=1000w",
@@ -136,13 +133,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       initialPage: 2,
                     ),
                   ),
-                  BigGap(),
+                  const BigGap(),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
+                        const Text(
                           "Stuff to explore nearby",
                           style: TextStyle(
                             color: Colors.black,
@@ -151,8 +148,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             fontWeight: FontWeight.w500,
                           ),
                         ),
-                        SmallGap(),
-                        Text(
+                        const SmallGap(),
+                        const Text(
                           "Hostels",
                           style: TextStyle(
                             color: Colors.black,
@@ -172,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               BigCard(
@@ -182,7 +179,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               BigCard(
@@ -195,8 +192,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        SmallGap(),
-                        Text(
+                        const SmallGap(),
+                        const Text(
                           "Rent apartments",
                           style: TextStyle(
                             color: Colors.black,
@@ -216,7 +213,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               BigCard(
@@ -226,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               BigCard(
@@ -239,8 +236,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        SmallGap(),
-                        Text(
+                        const SmallGap(),
+                        const Text(
                           "PGs",
                           style: TextStyle(
                             color: Colors.black,
@@ -260,7 +257,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               BigCard(
@@ -270,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               BigCard(
@@ -283,8 +280,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        SmallGap(),
-                        Text(
+                        const SmallGap(),
+                        const Text(
                           "Tiffin services",
                           style: TextStyle(
                             color: Colors.black,
@@ -304,7 +301,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               BigCard(
@@ -314,7 +311,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 8,
                               ),
                               BigCard(
@@ -327,7 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ],
                           ),
                         ),
-                        SmallGap(),
+                        const SmallGap(),
                       ],
                     ),
                   )

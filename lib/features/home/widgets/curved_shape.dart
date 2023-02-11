@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:hostelp/utils/colors.dart';
 
-const CURVE_HEIGHT = 160.0;
-const ANOTHER_HEIGHT = CURVE_HEIGHT + 120;
+const curveHeight = 160.0;
+const anotherHeight = curveHeight + 120;
 
 class CurvedShape extends StatelessWidget {
+  const CurvedShape({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       width: double.infinity,
-      height: CURVE_HEIGHT,
+      height: curveHeight,
       child: CustomPaint(
         painter: _MyPainter(),
       ),
@@ -20,20 +22,20 @@ class CurvedShape extends StatelessWidget {
 class _MyPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
-    Paint paint = new Paint()
+    Paint paint = Paint()
       ..style = PaintingStyle.fill
       ..isAntiAlias = true
       ..color = themePurple;
 
-    Offset circleCenter = Offset(size.width / 2, size.height + ANOTHER_HEIGHT);
+    Offset circleCenter = Offset(size.width / 2, size.height + anotherHeight);
 
-    Offset topLeft = Offset(0, 0);
+    Offset topLeft = const Offset(0, 0);
     Offset bottomLeft = Offset(0, size.height * 1.5);
     Offset topRight = Offset(size.width, 0);
     Offset bottomRight = Offset(size.width, size.height * 1.4);
 
     Offset rightCurveControlPoint =
-        Offset(circleCenter.dx * 1.1, size.height + ANOTHER_HEIGHT);
+        Offset(circleCenter.dx * 1.1, size.height + anotherHeight);
 
     Path path = Path()
       ..moveTo(topLeft.dx,
