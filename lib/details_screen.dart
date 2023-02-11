@@ -70,8 +70,7 @@ class _DetailScreenState extends State<DetailScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: urls.map(
                 (image) {
-                  //these two lines
-                  int index = urls.indexOf(image); //are changed
+                  int index = urls.indexOf(image);
                   return Container(
                     width: 8.0,
                     height: 8.0,
