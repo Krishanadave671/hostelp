@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hostelp/features/search/utils.dart';
-import 'package:hostelp/features/search/widgets/button.dart';
-import 'package:hostelp/features/search/widgets/filter_checkbox_widget.dart';
-import 'package:hostelp/features/search/widgets/search_filter_button.dart';
+// import 'package:hostelp/features/search/widgets/button.dart';
+// import 'package:hostelp/features/search/widgets/filter_checkbox_widget.dart';
+// import 'package:hostelp/features/search/widgets/search_filter_button.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -12,6 +14,8 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  String? _currentAddress = '';
+  late Position _currentPosition;
   void selectService(int index) {
     for (int i = 0; i < Utils.selectedOptionList.length; i++) {
       if (index == i) {
@@ -28,408 +32,154 @@ class _SearchScreenState extends State<SearchScreen> {
     });
   }
 
+  Future<Position> _determinePosition() async {
+    // bool serviceEnabled;
+    LocationPermission permission;
+
+    // Test if location services are enabled.
+    // serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    // if (!serviceEnabled) {
+    // Location services are not enabled don't continue
+    // accessing the position and request users of the
+    // App to enable the location services.
+    // }
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied, next time you could try
+        // requesting permissions again (this is also where
+        // Android's shouldShowRequestPermissionRationale
+        // returned true. According to Android guidelines
+        // your App should show an explanatory UI now.
+        return Future.error('Location permissions are denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      // Permissions are denied forever, handle appropriately.
+      return Future.error(
+          'Location permissions are permanently denied, we cannot request permissions.');
+    }
+
+    // When we reach here, permissions are granted and we can
+    // continue accessing the position of the device.
+    return await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+  }
+
+  Future<void> _getAddressFromLatLng(Position position) async {
+    await placemarkFromCoordinates(position.latitude, position.longitude)
+        .then((List<Placemark> placemarks) {
+      Placemark place = placemarks[0];
+      setState(() {
+        _currentAddress =
+            '${place.street}, ${place.subLocality}, ${place.subAdministrativeArea}, ${place.postalCode}';
+      });
+    }).catchError((e) {
+      debugPrint(e);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        FocusScopeNode currentFocus = FocusScope.of(context);
+        onTap: () {
+          FocusScopeNode currentFocus = FocusScope.of(context);
 
-        if (!currentFocus.hasPrimaryFocus) {
-          currentFocus.unfocus();
-        }
-      },
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(18.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Text(
-                    'What are you looking for?',
-                    style: TextStyle(
-                      fontSize: 44,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+          if (!currentFocus.hasPrimaryFocus) {
+            currentFocus.unfocus();
+          }
+        },
+        child: Scaffold(
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  child: Column(
                     children: [
-                      SearchFilterButton(
-                        title: 'Hostel',
-                        leftCircularBorder: true,
-                        onTap: () {
-                          setState(() {
-                            selectService(0);
-                          });
-                        },
-                        isSelected: Utils.selectedOptionList[0],
+                      OutlinedButton(
+                        onPressed: () {},
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Search',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary)),
+                              const Icon(Icons.search)
+                            ]),
                       ),
-                      SearchFilterButton(
-                        title: 'PG',
-                        onTap: () {
-                          setState(() {
-                            selectService(1);
-                          });
-                        },
-                        isSelected: Utils.selectedOptionList[1],
+                      const SizedBox(height: 10),
+                      TextField(
+                        textInputAction: TextInputAction.done,
+                        textAlignVertical: TextAlignVertical.center,
+                        decoration: InputDecoration(
+                            hintText: 'Enter location',
+                            hintStyle: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(24),
+                              borderSide: BorderSide(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .onBackground),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(24),
+                              borderSide: BorderSide(
+                                color: Theme.of(context).colorScheme.primary,
+                                width: 2.0,
+                              ),
+                            ),
+                            suffixIcon: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.location_on_rounded,
+                                  color: Theme.of(context).colorScheme.primary,
+                                ))),
                       ),
-                      SearchFilterButton(
-                        title: 'Tiffin',
-                        rightCircularBorder: true,
-                        onTap: () {
-                          setState(() {
-                            selectService(2);
-                          });
+                      const SizedBox(height: 10),
+                      OutlinedButton(
+                        onPressed: () async {
+                          _currentPosition = await _determinePosition();
+                          // print(_currentPosition);
+                          await _getAddressFromLatLng(_currentPosition);
+                          // print(_currentAddress);
                         },
-                        isSelected: Utils.selectedOptionList[2],
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text('Current location',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary)),
+                              const Icon(Icons.location_searching_rounded)
+                            ]),
                       ),
+                      Text(_currentAddress ?? ''),
                     ],
                   ),
-                  const SizedBox(height: 10),
-                  TextField(
-                    decoration: InputDecoration(
-                        hintText: 'Enter location',
-                        filled: true,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(24),
-                          borderSide:
-                              const BorderSide(color: Color(0xff645CBB)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(24),
-                          borderSide: const BorderSide(
-                            color: Color(0xff645CBB),
-                            width: 2.5,
-                          ),
-                        ),
-                        suffixIcon: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(Icons.search_rounded))),
-                  ),
-                  const SizedBox(
-                    height: 10,
-                  ),
-                  Center(
-                      child: Button(
-                          title: 'Filter',
-                          onTap: () {
-                            Utils.buttonAnimationBoolean = true;
-                            showModalBottomSheet(
-                                context: context,
-                                shape: const RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.vertical(
-                                        top: Radius.circular(24))),
-                                builder: (BuildContext context) {
-                                  return SizedBox(
-                                    height: MediaQuery.of(context).size.height,
-                                    child: StatefulBuilder(builder:
-                                        (BuildContext context,
-                                            StateSetter setState) {
-                                      return Scaffold(
-                                        body: SingleChildScrollView(
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Column(
-                                              children: [
-                                                const Text(
-                                                  'For',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: RadioListTile(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff645CBB),
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                .all(0),
-                                                        value: 1,
-                                                        title:
-                                                            const Text('Male'),
-                                                        groupValue: Utils
-                                                            .selectedGender,
-                                                        onChanged: ((value) {
-                                                          setState(() {
-                                                            Utils.selectedGender =
-                                                                value;
-                                                          });
-                                                        }),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: RadioListTile(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff645CBB),
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                .all(0),
-                                                        value: 2,
-                                                        title: const Text(
-                                                            'Female'),
-                                                        groupValue: Utils
-                                                            .selectedGender,
-                                                        onChanged: ((value) {
-                                                          setState(() {
-                                                            Utils.selectedGender =
-                                                                value;
-                                                          });
-                                                        }),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: RadioListTile(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff645CBB),
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                .all(0),
-                                                        value: 3,
-                                                        title: const Text(
-                                                            'Others'),
-                                                        groupValue: Utils
-                                                            .selectedGender,
-                                                        onChanged: ((value) {
-                                                          setState(() {
-                                                            Utils.selectedGender =
-                                                                value;
-                                                          });
-                                                        }),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                const Text(
-                                                  'Room Type',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                const SizedBox(height: 10),
-                                                SizedBox(
-                                                  height: 40,
-                                                  child: ListView.builder(
-                                                    scrollDirection:
-                                                        Axis.horizontal,
-                                                    shrinkWrap: true,
-                                                    itemCount: Utils
-                                                        .selectedRoomList
-                                                        .length,
-                                                    itemBuilder:
-                                                        (BuildContext context,
-                                                            int index) {
-                                                      return Row(
-                                                        children: [
-                                                          InkWell(
-                                                            borderRadius:
-                                                                BorderRadius
-                                                                    .circular(
-                                                                        24),
-                                                            onTap: () {
-                                                              setState(
-                                                                () {
-                                                                  filterSelectionManager(
-                                                                      index);
-                                                                },
-                                                              );
-                                                            },
-                                                            child: Container(
-                                                              height: 40,
-                                                              decoration:
-                                                                  BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius
-                                                                        .circular(
-                                                                            24),
-                                                                color: Utils.selectedRoomList[
-                                                                            index]
-                                                                        [
-                                                                        'isFilterSelected']
-                                                                    ? Theme.of(
-                                                                            context)
-                                                                        .colorScheme
-                                                                        .inversePrimary
-                                                                    : const Color(
-                                                                        0xff232f21),
-                                                              ),
-                                                              child: Padding(
-                                                                padding:
-                                                                    const EdgeInsets
-                                                                            .all(
-                                                                        8.0),
-                                                                child: Text(
-                                                                  Utils.selectedRoomList[
-                                                                          index]
-                                                                      [
-                                                                      'roomType'],
-                                                                  style: TextStyle(
-                                                                      color: Utils.selectedRoomList[index]
-                                                                              [
-                                                                              'isFilterSelected']
-                                                                          ? Colors
-                                                                              .black
-                                                                          : Colors
-                                                                              .white),
-                                                                ),
-                                                              ),
-                                                            ),
-                                                          ),
-                                                          const SizedBox(
-                                                            width: 10,
-                                                          ),
-                                                        ],
-                                                      );
-                                                    },
-                                                  ),
-                                                ),
-                                                const SizedBox(
-                                                  height: 10,
-                                                ),
-                                                Text(
-                                                  'Price range: Rs. ${Utils.currentSelectedPrice}',
-                                                  style: const TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                Slider(
-                                                  activeColor:
-                                                      const Color(0xff645CBB),
-                                                  label: 'Select price',
-                                                  value: Utils
-                                                      .currentSelectedPrice
-                                                      .toDouble(),
-                                                  onChanged: (value) {
-                                                    setState(() {
-                                                      Utils.currentSelectedPrice =
-                                                          value.toInt();
-                                                    });
-                                                  },
-                                                  min: 1000,
-                                                  divisions: 10,
-                                                  max: 20000,
-                                                ),
-                                                const SizedBox(height: 10),
-                                                const Text(
-                                                  'Preferred for',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                const SizedBox(height: 10),
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                        child:
-                                                            FilterCheckBoxWidget(
-                                                      title: 'Student',
-                                                      onChanged: (bool? value) {
-                                                        setState(() {
-                                                          Utils.selectedWorkPreferenceList[
-                                                              0] = !Utils
-                                                                  .selectedWorkPreferenceList[
-                                                              0];
-                                                        });
-                                                      },
-                                                      value: Utils
-                                                          .selectedWorkPreferenceList[0],
-                                                    )),
-                                                    const SizedBox(width: 10),
-                                                    Expanded(
-                                                        child:
-                                                            FilterCheckBoxWidget(
-                                                      title: 'Professional',
-                                                      onChanged: (bool? value) {
-                                                        setState(() {
-                                                          Utils.selectedWorkPreferenceList[
-                                                              1] = !Utils
-                                                                  .selectedWorkPreferenceList[
-                                                              1];
-                                                        });
-                                                      },
-                                                      value: Utils
-                                                          .selectedWorkPreferenceList[1],
-                                                    )),
-                                                  ],
-                                                ),
-                                                const SizedBox(height: 10),
-                                                const Text(
-                                                  'Mess',
-                                                  style: TextStyle(
-                                                      fontSize: 18,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                                const SizedBox(height: 10),
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: RadioListTile(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff645CBB),
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                .all(0),
-                                                        value: 1,
-                                                        title:
-                                                            const Text('Yes'),
-                                                        groupValue: Utils.mess,
-                                                        onChanged: ((value) {
-                                                          setState(() {
-                                                            Utils.mess = value;
-                                                          });
-                                                        }),
-                                                      ),
-                                                    ),
-                                                    Expanded(
-                                                      child: RadioListTile(
-                                                        activeColor:
-                                                            const Color(
-                                                                0xff645CBB),
-                                                        contentPadding:
-                                                            const EdgeInsets
-                                                                .all(0),
-                                                        value: 2,
-                                                        title: const Text('No'),
-                                                        groupValue: Utils.mess,
-                                                        onChanged: ((value) {
-                                                          setState(() {
-                                                            Utils.mess = value;
-                                                          });
-                                                        }),
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      );
-                                    }),
-                                  );
-                                });
-                            Utils.buttonAnimationBoolean = false;
-                          }))
-                ],
+                ),
               ),
-            ),
+            ],
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   void filterSelectionManager(int index) {
