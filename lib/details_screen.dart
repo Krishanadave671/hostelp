@@ -127,10 +127,10 @@ class _DetailScreenState extends State<DetailScreen> {
                   padding: const EdgeInsets.only(left: 20),
                   child: Text(
                     "₹2000",
-                    style: GoogleFonts.poppins(
-                        fontSize: 26,
-                        color: lightColorScheme.primary,
-                        fontWeight: FontWeight.w400),
+                    style: Theme.of(context)
+                        .textTheme
+                        .displayMedium!
+                        .copyWith(color: lightColorScheme.primary),
                   ),
                 ),
                 Text("/night", style: Theme.of(context).textTheme.displaySmall)
@@ -163,7 +163,10 @@ class _DetailScreenState extends State<DetailScreen> {
                 "A hostel is a lower-priced inn of sorts that offers basic, shared accommodations. Typically, a hostel features a large room with separate beds, a shared bathroom, and a communal kitchen. Some hostels have private rooms, but the lower-cost ones generally offer bunk beds. Hostels originated in Europe, but they’ve grown in popularity and you can find them all over the world.",
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
-                style: GoogleFonts.poppins(color: Colors.grey.shade500),
+                style: Theme.of(context)
+                    .textTheme
+                    .bodySmall!
+                    .copyWith(color: Colors.grey.shade500),
               ),
             ),
             const SizedBox(

@@ -87,53 +87,56 @@ final darktheme = ThemeData(
     fontFamily: 'Poppins');
 
 const _textTheme = TextTheme(
-  displayLarge: TextStyle(
-    fontSize: 36,
-    fontWeight: FontWeight.w400,
-  ),
-  displayMedium: TextStyle(
-    fontSize: 28,
-    fontWeight: FontWeight.w400,
-  ),
-  displaySmall: TextStyle(
-    fontSize: 22,
-    fontWeight: FontWeight.w400,
-  ),
-  headlineLarge: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w400,
-  ),
-  headlineMedium: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.bold,
-  ),
-  headlineSmall: TextStyle(
-    fontSize: 36,
-    fontWeight: FontWeight.w400,
-  ),
-  titleLarge: TextStyle(
-    fontSize: 24,
-    fontWeight: FontWeight.w600,
-  ),
-  titleMedium: TextStyle(
-    fontSize: 20,
-    fontWeight: FontWeight.w600,
-  ),
-  titleSmall: TextStyle(
-    fontSize: 16,
-    fontWeight: FontWeight.w600,
-  ),
-  labelLarge: TextStyle(
-    fontSize: 18,
-    fontWeight: FontWeight.w400,
-  ),
-  labelMedium: TextStyle(
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-  ),
-  labelSmall: TextStyle(
-    fontFamily: 'Poppins',
-    fontSize: 14,
-    fontWeight: FontWeight.w400,
-  ),
-);
+    displayLarge: TextStyle(
+      fontSize: 36,
+      fontWeight: FontWeight.w400,
+    ),
+    displayMedium: TextStyle(
+      fontSize: 28,
+      fontWeight: FontWeight.w400,
+    ),
+    displaySmall: TextStyle(
+      fontSize: 22,
+      fontWeight: FontWeight.w400,
+    ),
+    headlineLarge: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w400,
+    ),
+    headlineMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.bold,
+    ),
+    headlineSmall: TextStyle(
+      fontSize: 36,
+      fontWeight: FontWeight.w400,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w600,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w600,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 18,
+      fontWeight: FontWeight.w400,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+    ),
+    labelSmall: TextStyle(
+      fontFamily: 'Poppins',
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+    ),
+    bodySmall: TextStyle(fontSize: 15));
+
+final priceLabel = TextStyle(
+    fontSize: 28, fontWeight: FontWeight.w400, color: lightColorScheme.primary);

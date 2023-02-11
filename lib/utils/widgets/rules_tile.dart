@@ -13,15 +13,29 @@ class RulesTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 10, bottom: 10),
-      child: ReadMoreText(
-        textAlign: TextAlign.start,
-        "$ruleNo $rule",
-        style: GoogleFonts.poppins(color: Colors.grey.shade500),
-        trimMode: TrimMode.Line,
-        trimLines: 1,
-        colorClickableText: Colors.blue,
-        trimExpandedText: "Show Less",
-        trimCollapsedText: "Show More",
+      child: Row(
+        children: [
+          Text(
+            ruleNo.toString(),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall!
+                .copyWith(color: Colors.grey.shade500),
+          ),
+          const SizedBox(
+            width: 10,
+          ),
+          Expanded(
+            child: Text(
+              rule,
+              maxLines: 4,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodySmall!
+                  .copyWith(color: Colors.grey.shade500),
+            ),
+          )
+        ],
       ),
     );
   }
