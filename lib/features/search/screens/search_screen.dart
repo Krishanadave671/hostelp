@@ -100,7 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
             backgroundColor: Colors.transparent,
             shadowColor: Colors.transparent,
             // The search area here
-            title: Container(
+            title: SizedBox(
               height: 50,
               child: Material(
                 child: SizedBox(

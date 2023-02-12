@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MiniCard extends StatefulWidget {
   final Image img;
   final String name;
-  final onTap;
+  final void Function() onTap;
   const MiniCard(
       {super.key, required this.img, required this.name, required this.onTap});
 
