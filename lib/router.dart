@@ -10,13 +10,7 @@ final loggedOutRoute = RouteMap(routes: {
 });
 
 final loggedInRoute = RouteMap(routes: {
-  // '/': (_) => const MaterialPage(child: SafeArea(child: HomeScreen())),
-  // '/search': (_) => const MaterialPage(child: Search()),
   '/': (_) => const MaterialPage(child: HomeScreen()),
   '/search': (_) => const MaterialPage(child: SearchScreen()),
   '/hostel': (_) => const MaterialPage(child: HostelList()),
 });
-
-// final hostelRoute = RouteMap(routes: {
-//   '/hostel': (_) => const MaterialPage(child: HostelList()),
-// });
