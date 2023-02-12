@@ -5,6 +5,8 @@ import 'package:hostelp/features/search/utils.dart';
 // import 'package:hostelp/features/search/widgets/search_filter_button.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:hostelp/utils/colors.dart';
+import 'package:routemaster/routemaster.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -93,6 +95,54 @@ class _SearchScreenState extends State<SearchScreen> {
           }
         },
         child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 70,
+            automaticallyImplyLeading: false,
+            backgroundColor: Colors.transparent,
+            shadowColor: Colors.transparent,
+            // The search area here
+            title: Container(
+              height: 50,
+              child: Material(
+                child: SizedBox(
+                  height: 100,
+                  child: TextField(
+                    autofocus: true,
+                    textAlignVertical: TextAlignVertical.bottom,
+                    style: const TextStyle(
+                      color: Colors.black,
+                      fontSize: 17,
+                      // fontFamily: 'EuclidCircular',
+                      fontWeight: FontWeight.w400,
+                    ),
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.all(25),
+                      hintText: 'Search here',
+                      filled: true,
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: BorderSide(color: themePurple),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        borderSide: const BorderSide(
+                          color: Color(0xff645CBB),
+                          width: 2.5,
+                        ),
+                      ),
+                      prefixIcon: IconButton(
+                        onPressed: () {
+                          Routemaster.of(context).pop();
+                        },
+                        icon: const Icon(Icons.arrow_back),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            // ),
+          ),
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -101,23 +151,23 @@ class _SearchScreenState extends State<SearchScreen> {
                   width: MediaQuery.of(context).size.width * 0.7,
                   child: Column(
                     children: [
-                      OutlinedButton(
-                        onPressed: () {},
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text('Search',
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium
-                                      ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary)),
-                              const Icon(Icons.search)
-                            ]),
-                      ),
-                      const SizedBox(height: 10),
+                      // OutlinedButton(
+                      //   onPressed: () {},
+                      //   child: Row(
+                      //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      //       children: [
+                      //         Text('Search',
+                      //             style: Theme.of(context)
+                      //                 .textTheme
+                      //                 .labelMedium
+                      //                 ?.copyWith(
+                      //                     color: Theme.of(context)
+                      //                         .colorScheme
+                      //                         .primary)),
+                      //         const Icon(Icons.search)
+                      //       ]),
+                      // ),
+                      // const SizedBox(height: 10),
                       TextField(
                         textInputAction: TextInputAction.done,
                         textAlignVertical: TextAlignVertical.center,

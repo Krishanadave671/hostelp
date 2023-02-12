@@ -30,7 +30,7 @@ class _SearchState extends State<Search> {
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20,
-                  fontFamily: 'EuclidCircular',
+                  // fontFamily: 'EuclidCircular',
                   fontWeight: FontWeight.w400,
                 ),
                 decoration: InputDecoration(

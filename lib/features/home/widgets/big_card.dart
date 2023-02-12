@@ -14,8 +14,9 @@ class _BigCardState extends State<BigCard> {
   @override
   Widget build(BuildContext context) {
     return DelayedDisplay(
-      slidingBeginOffset:const Offset(0, 0.8),
+      slidingBeginOffset: const Offset(0, 0.8),
       child: Card(
+        elevation: 2,
         child: Container(
           // padding: const EdgeInsets.all(8.0),
           decoration: const BoxDecoration(
@@ -26,7 +27,7 @@ class _BigCardState extends State<BigCard> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               ClipRRect(
-                borderRadius:const BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                   topLeft: Radius.circular(8),
                   topRight: Radius.circular(8),
                 ),
@@ -34,13 +35,16 @@ class _BigCardState extends State<BigCard> {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  widget.name,
-                  style: const TextStyle(
-                    color: Color.fromARGB(255, 48, 48, 48),
-                    fontSize: 16,
-                    fontFamily: 'EuclidCircular',
-                    fontWeight: FontWeight.w600,
+                child: SizedBox(
+                  width: 40,
+                  child: Text(
+                    widget.name,
+                    style: const TextStyle(
+                      overflow: TextOverflow.clip,
+                      color: Color.fromARGB(255, 48, 48, 48),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ),
               ),

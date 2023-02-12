@@ -23,314 +23,328 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      extendBodyBehindAppBar: true,
-      appBar: AppBar(
-        backgroundColor: themePurple,
-        elevation: 0,
-        primary: false,
-        actions: [
-          IconButton(
-            icon: const Icon(
-              Icons.search,
-              color: Colors.white,
+    return SafeArea(
+      child: Scaffold(
+        extendBodyBehindAppBar: true,
+        appBar: AppBar(
+          backgroundColor: themePurple,
+          elevation: 0,
+          primary: false,
+          actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.search,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Routemaster.of(context).push('/search');
+              },
             ),
-            onPressed: () {
-              Routemaster.of(context).push('/search');
-            },
-          ),
-          IconButton(
-            icon: const Icon(
-              Icons.notifications_none,
-              color: Colors.white,
+            IconButton(
+              icon: const Icon(
+                Icons.notifications_none,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                // do something
+              },
             ),
-            onPressed: () {
-              // do something
-            },
-          ),
-          const CircleAvatar(
-            backgroundImage: null,
-            backgroundColor: Colors.grey,
-          ),
-          const SizedBox(
-            width: 10,
-          )
-        ],
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              const CurvedShape(),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            const CircleAvatar(
+              backgroundImage: null,
+              backgroundColor: Colors.grey,
+            ),
+            const SizedBox(
+              width: 10,
+            )
+          ],
+        ),
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Stack(
+              children: [
+                const CurvedShape(),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.horizontal,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            MiniCard(
+                              img: Image.asset(
+                                "assets/images/buildings.png",
+                                height: 55,
+                                width: 50,
+                              ),
+                              name: "Hostel",
+                              onTap: () {
+                                Routemaster.of(context).push('/hostel');
+                              },
+                            ),
+                            MiniCard(
+                              img: Image.asset(
+                                "assets/images/pg.png",
+                                height: 55,
+                                width: 50,
+                              ),
+                              name: "PG",
+                              onTap: () {
+                                Routemaster.of(context).push('/hostel');
+                              },
+                            ),
+                            MiniCard(
+                              img: Image.asset(
+                                "assets/images/rent.png",
+                                height: 55,
+                                width: 50,
+                              ),
+                              name: "Rent",
+                              onTap: () {
+                                Routemaster.of(context).push('/hostel');
+                              },
+                            ),
+                            MiniCard(
+                              img: Image.asset(
+                                "assets/images/tiffin.png",
+                                height: 55,
+                                width: 50,
+                              ),
+                              name: "Tiffin",
+                              onTap: () {
+                                Routemaster.of(context).push('/hostel');
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const BigGap(),
+                    CarouselSlider(
+                      items: const [
+                        AdCard(
+                          link:
+                              "https://images.squarespace-cdn.com/content/v1/5ee642363713db37c1aa1c70/1601228943611-BHI8PAV7OM7FT5269O2M/image-asset.jpeg?format=1000w",
+                        ),
+                        AdCard(
+                          link:
+                              "https://cdn5.vectorstock.com/i/1000x1000/03/49/strawberry-ice-cream-advertisement-vector-21520349.jpg",
+                        ),
+                        AdCard(
+                          link:
+                              "https://static-cse.canva.com/blob/571368/advertisement161.jpg",
+                        ),
+                      ],
+                      carouselController: buttonCarouselController,
+                      options: CarouselOptions(
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        viewportFraction: 0.7,
+                        aspectRatio: 2.0,
+                        initialPage: 2,
+                      ),
+                    ),
+                    const BigGap(),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          MiniCard(
-                            img: Image.asset(
-                              "assets/images/buildings.png",
-                              height: 55,
-                              width: 50,
+                          const Text(
+                            "Stuff to explore nearby",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 22,
+                              // fontFamily: 'EuclidCircular',
+                              fontWeight: FontWeight.w500,
                             ),
-                            name: "Hostel",
                           ),
-                          MiniCard(
-                            img: Image.asset(
-                              "assets/images/pg.png",
-                              height: 55,
-                              width: 50,
+                          const SmallGap(),
+                          const Text(
+                            "Hostels",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 24,
+                              // fontFamily: 'EuclidCircular',
+                              fontWeight: FontWeight.w600,
                             ),
-                            name: "PG",
                           ),
-                          MiniCard(
-                            img: Image.asset(
-                              "assets/images/rent.png",
-                              height: 55,
-                              width: 50,
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                BigCard(
+                                  name: "Wayne's pent",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                BigCard(
+                                  name: "Stark Tower",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                BigCard(
+                                  name: "Bojack's pent",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                              ],
                             ),
-                            name: "Rent",
                           ),
-                          MiniCard(
-                            img: Image.asset(
-                              "assets/images/tiffin.png",
-                              height: 55,
-                              width: 50,
+                          const SmallGap(),
+                          const Text(
+                            "Rent apartments",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 24,
+                              // fontFamily: 'EuclidCircular',
+                              fontWeight: FontWeight.w600,
                             ),
-                            name: "Tiffin",
                           ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                BigCard(
+                                  name: "Wayne's pent",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                BigCard(
+                                  name: "Stark Tower",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                BigCard(
+                                  name: "Bojack's pent",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SmallGap(),
+                          const Text(
+                            "PGs",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 24,
+                              // fontFamily: 'EuclidCircular',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                BigCard(
+                                  name: "Wayne's pent",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                BigCard(
+                                  name: "Stark Tower",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                BigCard(
+                                  name: "Bojack's pent",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SmallGap(),
+                          const Text(
+                            "Tiffin services",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 24,
+                              // fontFamily: 'EuclidCircular',
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              children: [
+                                BigCard(
+                                  name: "Wayne's pent",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                BigCard(
+                                  name: "Stark Tower",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                BigCard(
+                                  name: "Bojack's pent",
+                                  img: Image.network(
+                                    fit: BoxFit.contain,
+                                    "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SmallGap(),
                         ],
                       ),
-                    ),
-                  ),
-                  const BigGap(),
-                  CarouselSlider(
-                    items: const [
-                      AdCard(
-                        link:
-                            "https://images.squarespace-cdn.com/content/v1/5ee642363713db37c1aa1c70/1601228943611-BHI8PAV7OM7FT5269O2M/image-asset.jpeg?format=1000w",
-                      ),
-                      AdCard(
-                        link:
-                            "https://cdn5.vectorstock.com/i/1000x1000/03/49/strawberry-ice-cream-advertisement-vector-21520349.jpg",
-                      ),
-                      AdCard(
-                        link:
-                            "https://static-cse.canva.com/blob/571368/advertisement161.jpg",
-                      ),
-                    ],
-                    carouselController: buttonCarouselController,
-                    options: CarouselOptions(
-                      autoPlay: true,
-                      enlargeCenterPage: true,
-                      viewportFraction: 0.7,
-                      aspectRatio: 2.0,
-                      initialPage: 2,
-                    ),
-                  ),
-                  const BigGap(),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Text(
-                          "Stuff to explore nearby",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 22,
-                            fontFamily: 'EuclidCircular',
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                        const SmallGap(),
-                        const Text(
-                          "Hostels",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 24,
-                            fontFamily: 'EuclidCircular',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              BigCard(
-                                name: "Wayne Mansion",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              BigCard(
-                                name: "Stark Tower",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              BigCard(
-                                name: "Bojack's mansion",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SmallGap(),
-                        const Text(
-                          "Rent apartments",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 24,
-                            fontFamily: 'EuclidCircular',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              BigCard(
-                                name: "Wayne Mansion",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              BigCard(
-                                name: "Stark Tower",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              BigCard(
-                                name: "Bojack's mansion",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SmallGap(),
-                        const Text(
-                          "PGs",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 24,
-                            fontFamily: 'EuclidCircular',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              BigCard(
-                                name: "Wayne Mansion",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              BigCard(
-                                name: "Stark Tower",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              BigCard(
-                                name: "Bojack's mansion",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SmallGap(),
-                        const Text(
-                          "Tiffin services",
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 24,
-                            fontFamily: 'EuclidCircular',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: Row(
-                            children: [
-                              BigCard(
-                                name: "Wayne Mansion",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              BigCard(
-                                name: "Stark Tower",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 8,
-                              ),
-                              BigCard(
-                                name: "Bojack's mansion",
-                                img: Image.network(
-                                  fit: BoxFit.contain,
-                                  "https://media.istockphoto.com/id/506903162/photo/luxurious-villa-with-pool.jpg?s=612x612&w=0&k=20&c=Ek2P0DQ9nHQero4m9mdDyCVMVq3TLnXigxNPcZbgX2E=",
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SmallGap(),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ],
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
