@@ -5,8 +5,8 @@ class BigGap extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SizedBox(
-      height: 15,
+    return SizedBox(
+      height: MediaQuery.of(context).size.height * 0.025,
     );
   }
 }
