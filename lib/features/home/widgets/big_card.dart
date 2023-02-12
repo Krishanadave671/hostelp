@@ -39,12 +39,7 @@ class _BigCardState extends State<BigCard> {
                   width: 40,
                   child: Text(
                     widget.name,
-                    style: const TextStyle(
-                      overflow: TextOverflow.clip,
-                      color: Color.fromARGB(255, 48, 48, 48),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
+                    style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
               ),

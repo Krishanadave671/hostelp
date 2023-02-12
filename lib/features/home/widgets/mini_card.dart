@@ -26,12 +26,7 @@ class _MiniCardState extends State<MiniCard> {
               widget.img,
               Text(
                 widget.name,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontSize: 16,
-                  // fontFamily: 'EuclidCircular',
-                  fontWeight: FontWeight.w600,
-                ),
+                style: Theme.of(context).textTheme.titleSmall,
               ),
             ],
           ),

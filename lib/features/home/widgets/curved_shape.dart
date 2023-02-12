@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hostelp/utils/colors.dart';
 
 const curveHeight = 160.0;
 const anotherHeight = curveHeight + 120;
@@ -13,19 +12,24 @@ class CurvedShape extends StatelessWidget {
       width: double.infinity,
       height: curveHeight,
       child: CustomPaint(
-        painter: _MyPainter(),
+        painter: _MyPainter(
+          backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
+        ),
       ),
     );
   }
 }
 
 class _MyPainter extends CustomPainter {
+  final Color backgroundColor;
+  _MyPainter({required this.backgroundColor});
+
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
       ..style = PaintingStyle.fill
       ..isAntiAlias = true
-      ..color = themePurple;
+      ..color = backgroundColor;
 
     Offset circleCenter = Offset(size.width / 2, size.height + anotherHeight);
 

@@ -5,7 +5,6 @@ import 'package:hostelp/features/search/utils.dart';
 // import 'package:hostelp/features/search/widgets/search_filter_button.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:hostelp/utils/colors.dart';
 import 'package:routemaster/routemaster.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -121,7 +120,9 @@ class _SearchScreenState extends State<SearchScreen> {
                       filled: true,
                       enabledBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide(color: themePurple),
+                        borderSide: BorderSide(
+                          color: Theme.of(context).colorScheme.onPrimaryContainer,
+                        ),
                       ),
                       focusedBorder: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12),

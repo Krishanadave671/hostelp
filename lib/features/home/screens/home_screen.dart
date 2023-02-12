@@ -6,7 +6,6 @@ import 'package:hostelp/features/home/widgets/big_gap.dart';
 import 'package:hostelp/features/home/widgets/mini_card.dart';
 import 'package:hostelp/features/home/widgets/small_gap.dart';
 import 'package:hostelp/features/home/widgets/curved_shape.dart';
-import 'package:hostelp/utils/colors.dart';
 import 'package:routemaster/routemaster.dart';
 
 //name photo description book_button calender menu
@@ -27,23 +26,23 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
-          backgroundColor: themePurple,
+          backgroundColor: Theme.of(context).colorScheme.onPrimaryContainer,
           elevation: 0,
           primary: false,
           actions: [
             IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.search,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               onPressed: () {
                 Routemaster.of(context).push('/search');
               },
             ),
             IconButton(
-              icon: const Icon(
+              icon: Icon(
                 Icons.notifications_none,
-                color: Colors.white,
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
               onPressed: () {
                 // do something
@@ -152,24 +151,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
+                          Text(
                             "Stuff to explore nearby",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 22,
-                              // fontFamily: 'EuclidCircular',
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: Theme.of(context).textTheme.displaySmall,
                           ),
-                          const SmallGap(),
-                          const Text(
+                          const BigGap(),
+                          Text(
                             "Hostels",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              // fontFamily: 'EuclidCircular',
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -206,14 +195,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const SmallGap(),
-                          const Text(
+                          Text(
                             "Rent apartments",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              // fontFamily: 'EuclidCircular',
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -250,14 +234,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const SmallGap(),
-                          const Text(
+                          Text(
                             "PGs",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              // fontFamily: 'EuclidCircular',
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -294,14 +273,9 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                           ),
                           const SmallGap(),
-                          const Text(
+                          Text(
                             "Tiffin services",
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 24,
-                              // fontFamily: 'EuclidCircular',
-                              fontWeight: FontWeight.w600,
-                            ),
+                            style: Theme.of(context).textTheme.titleLarge,
                           ),
                           SingleChildScrollView(
                             scrollDirection: Axis.horizontal,

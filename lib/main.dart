@@ -16,7 +16,7 @@ class MainApp extends StatelessWidget {
       theme: theme,
       darkTheme: darktheme,
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.light,
+      themeMode: ThemeMode.dark,
       routerDelegate:
           RoutemasterDelegate(routesBuilder: (context) => loggedInRoute),
       routeInformationParser: const RoutemasterParser(),
