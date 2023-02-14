@@ -15,7 +15,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       theme: theme,
       darkTheme: darktheme,
-      themeMode: ThemeMode.dark,
+      themeMode: ThemeMode.light,
       routerDelegate:
           RoutemasterDelegate(routesBuilder: (context) => loggedInRoute),
       routeInformationParser: const RoutemasterParser(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hostelp/features/search/utils.dart';
+import 'package:routemaster/routemaster.dart';
 
 class HostelList extends StatelessWidget {
   const HostelList({Key? key}) : super(key: key);
@@ -464,7 +465,9 @@ class ElevatedCardExample extends StatelessWidget {
         child: Padding(
       padding: const EdgeInsets.all(4.0),
       child: InkWell(
-        onTap: () {},
+        onTap: () {
+          Routemaster.of(context).push('/detail') ; 
+        },
         child: Card(
             elevation: 5,
             child: SizedBox(

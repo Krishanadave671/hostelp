@@ -5,6 +5,7 @@ import 'package:hostelp/features/search/utils.dart';
 // import 'package:hostelp/features/search/widgets/search_filter_button.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:routemaster/routemaster.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({super.key});
@@ -144,7 +145,9 @@ class _SearchScreenState extends State<SearchScreen> {
                               ),
                             ),
                             suffixIcon: IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Routemaster.of(context).push('/hostellist');
+                                },
                                 icon: Icon(
                                   Icons.location_on_rounded,
                                   color: Theme.of(context).colorScheme.primary,
