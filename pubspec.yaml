@@ -39,8 +39,8 @@ flutter:
         - asset: assets/fonts/Poppins/Poppins-SemiBold.ttf
     - family: Metropolis
       fonts:
-        - asset: assets/fonts/Metropolis/Metropolis-Regular.ttf
-        - asset: assets/fonts/Metropolis/Metropolis-SemiBold.ttf
+        - asset: assets/fonts/Metropolis/Metropolis-Regular.otf
+        - asset: assets/fonts/Metropolis/Metropolis-SemiBold.otf
 
   # To add assets to your application, add an assets section, like this:
   assets:
