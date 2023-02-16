@@ -75,7 +75,7 @@ final theme = ThemeData(
     primaryColor: lightColorScheme.primary,
     colorScheme: lightColorScheme,
     textTheme: _textTheme,
-    fontFamily: 'Poppins');
+    fontFamily: 'Metropolis');
 
 final darktheme = ThemeData(
     useMaterial3: true,
@@ -84,7 +84,7 @@ final darktheme = ThemeData(
     primaryColor: darkColorScheme.primary,
     colorScheme: darkColorScheme,
     textTheme: _textTheme,
-    fontFamily: 'Poppins');
+    fontFamily: 'Metropolis');
 
 const _textTheme = TextTheme(
     displayLarge: TextStyle(
