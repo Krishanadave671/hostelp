@@ -112,7 +112,7 @@ const _textTheme = TextTheme(
       fontWeight: FontWeight.w400,
     ),
     titleLarge: TextStyle(
-      fontSize: 24,
+      fontSize: 22,
       fontWeight: FontWeight.w600,
     ),
     titleMedium: TextStyle(
