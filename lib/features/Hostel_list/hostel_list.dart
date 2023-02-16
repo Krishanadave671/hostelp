@@ -44,8 +44,11 @@ class HostelList extends StatelessWidget {
         body: CustomScrollView(
       slivers: [
         SliverAppBar(
-          leading: const Icon(
-            Icons.arrow_back_ios,
+          leading: IconButton(
+            icon: const Icon(Icons.arrow_back_ios),
+            onPressed: () {
+              Routemaster.of(context).pop();
+            },
           ),
           elevation: 5,
           title: const Text(
