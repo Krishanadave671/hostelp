@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
+
 import 'package:hostelp/mytheme.dart';
 
 class TotalPriceTile extends StatelessWidget {
@@ -8,7 +7,7 @@ class TotalPriceTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 60,
       child: Card(
         child: Padding(
@@ -21,7 +20,7 @@ class TotalPriceTile extends StatelessWidget {
                     color: lightColorScheme.primary,
                     fontWeight: FontWeight.bold),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 180,
               ),
               Text(

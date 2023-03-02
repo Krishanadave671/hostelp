@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:hostelp/mytheme.dart';
 
 class MemberTile extends StatelessWidget {
@@ -42,12 +40,12 @@ class MemberTile extends StatelessWidget {
                         iconSize: 25,
                         onPressed: () {},
                         color: lightColorScheme.primary,
-                        icon: Icon(Icons.edit_note)),
+                        icon: const Icon(Icons.edit_note)),
                     IconButton(
                         iconSize: 25,
                         color: lightColorScheme.primary,
                         onPressed: () {},
-                        icon: Icon(Icons.delete_outline_sharp))
+                        icon: const Icon(Icons.delete_outline_sharp))
                   ],
                 ),
               ),
