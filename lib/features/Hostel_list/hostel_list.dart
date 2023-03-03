@@ -469,7 +469,7 @@ class ElevatedCardExample extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: InkWell(
         onTap: () {
-          Routemaster.of(context).push('/detail') ; 
+          Routemaster.of(context).push('/hostel-detail');
         },
         child: Card(
             elevation: 5,
