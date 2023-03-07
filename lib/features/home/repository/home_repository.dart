@@ -2,9 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hostelp/core/constants/firebase_constants.dart';
 import 'package:hostelp/core/providers/firebase_providers.dart';
-import 'package:hostelp/features/search/utils.dart';
 import 'package:hostelp/models/hostel_model.dart';
-import 'package:fpdart/fpdart.dart';
 import 'dart:math';
 import 'package:hostelp/core/providers/utils.dart' as misc;
 
@@ -49,7 +47,8 @@ class HomeRepository {
          // Calculate the lat/long offsets for a bounding box around the center point
         final double latOffset = misc.Utils.degrees(distance / 111319.9);
         // 1 degree of latitude = 111.3199 km
-        final double longOffset = misc.Utils.degrees(distance / (111319.9 * cos(misc.Utils.radians(latCenter)))); 
+        final double longOffset = 
+            misc.Utils.degrees(distance / (111319.9 * cos(misc.Utils.radians(latCenter)))); 
         // 1 degree of longitude = 111.3199 km * cos(latitude)
         final double latMin = latCenter + latOffset;
         final double latMax = latCenter - latOffset;
@@ -70,6 +69,6 @@ class HomeRepository {
     
     // collection reference for firestore 
     CollectionReference get _hostels => _firestore.collection(FirebaseConstants.hostelCollection);
-    CollectionReference get _pgs => _firestore.collection(FirebaseConstants.pgCollection);
-    CollectionReference get _user => _firestore.collection(FirebaseConstants.userCollection);
+    //CollectionReference get _pgs => _firestore.collection(FirebaseConstants.pgCollection);
+    //CollectionReference get _user => _firestore.collection(FirebaseConstants.userCollection);
 }
