@@ -6,8 +6,9 @@ import 'package:hostelp/models/hostel_model.dart';
 
 // create riverpod provider 
 final homeRepositoryProvider = Provider((ref) {
-    return HomeRepository(firestore: ref.watch(firebaseProvider));  
-},)
+    return HomeRepository(firestore: ref.watch(firestoreProvider));  
+},);
+
 
 /*
 * class for HomeRepository, to handle calls to firebase and firestore 
@@ -20,14 +21,14 @@ class HomeRepository {
 
     HomeRepository({required FirebaseFirestore firestore}) : _firestore = firestore; 
     
-    Future<Hostel> getHostelDetail(String hostelID) async {
-        try {
-            var hostelDocs = await _hostels.where("hostel_id",isEqualTo: hostelID);
+    // Future<Hostel> getHostelDetail(String hostelID) async {
+    //     try {
+    //         var hostelDocs = await _hostels.where("hostel_id",isEqualTo: hostelID);
             
-        } on FirebaseException catch (e) {
-            throw e.message!;
-        }
-    }
+    //     } on FirebaseException catch (e) {
+    //         throw e.message!;
+    //     }
+    // }
 
 
 
